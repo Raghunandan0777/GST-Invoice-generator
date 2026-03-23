@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+/* ─── Font face definitions (self-contained, no Google dependency) ─── */
+/* We load via <link> in layout.tsx, these just register the names */
+
+@theme {
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, monospace;
+  --font-display: 'Syne', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ─── Base reset ─────────────────────────────────────────────────── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  }
+
+  body {
+    font-family: 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    background-color: #09090b;
+    color: #f4f4f5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* CRITICAL: prevent font stretching */
+    font-stretch: normal;
+    font-optical-sizing: auto;
+  }
+
+  /* Prevent layout shift while fonts load */
+  .font-syne,
+  [class*="font-syne"] {
+    font-family: 'Syne', ui-sans-serif, system-ui, sans-serif;
+    font-stretch: normal;
+    font-synthesis: none;
+  }
+
+  /* Mono elements */
+  code, kbd, samp, pre,
+  .font-mono,
+  [class*="font-mono"] {
+    font-family: 'DM Mono', ui-monospace, 'Cascadia Code', monospace;
+    font-stretch: normal;
+  }
+
+  /* Headings use Syne */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-stretch: normal;
+  }
+
+  /* No weird stretching on inputs */
+  input, textarea, select, button {
+    font-family: inherit;
+    font-stretch: normal;
+  }
+}
+
+/* ─── Utility classes ────────────────────────────────────────────── */
+.font-syne {
+  font-family: 'Syne', ui-sans-serif, system-ui, sans-serif !important;
+  font-stretch: normal !important;
+}
+
+.font-dm-sans {
+  font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif !important;
+  font-stretch: normal !important;
+}
+
+.font-dm-mono {
+  font-family: 'DM Mono', ui-monospace, monospace !important;
+  font-stretch: normal !important;
+}
+
+/* ─── Typography scale helpers ───────────────────────────────────── */
+.display-xl {
+  font-family: 'Syne', sans-serif;
+  font-weight: 900;
+  font-size: clamp(40px, 7vw, 72px);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  font-stretch: normal;
+}
+
+.display-lg {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-stretch: normal;
+}
+
+.display-md {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: clamp(20px, 3vw, 32px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-stretch: normal;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #52525b; }
+
+/* ─── Animations ─────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(24px) scale(0.95); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.animate-fade-in { animation: fadeIn 0.4s ease-out both; }
+.animate-slide-in { animation: slideIn 0.3s ease-out both; }
+
+/* ─── Print ──────────────────────────────────────────────────────── */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white !important; color: black !important; }
+
+  @page {
+    margin: 1cm;
+    size: A4;
+  }
+}
