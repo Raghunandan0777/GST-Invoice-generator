@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Background -->
+  <rect width="64" height="64" rx="14" fill="#18181b"/>
+  <!-- Invoice paper shape -->
+  <rect x="14" y="10" width="28" height="36" rx="3" fill="#27272a"/>
+  <!-- Tear/fold corner -->
+  <path d="M42 10 L50 18 L42 18 Z" fill="#3f3f46"/>
+  <path d="M42 10 L42 18 L50 18" fill="#52525b"/>
+  <!-- Lines on invoice -->
+  <rect x="18" y="18" width="16" height="2.5" rx="1.25" fill="#71717a"/>
+  <rect x="18" y="24" width="20" height="2" rx="1" fill="#52525b"/>
+  <rect x="18" y="29" width="14" height="2" rx="1" fill="#52525b"/>
+  <rect x="18" y="34" width="18" height="2" rx="1" fill="#52525b"/>
+  <!-- Rupee symbol circle -->
+  <circle cx="42" cy="40" r="12" fill="#f5a623"/>
+  <!-- ₹ symbol -->
+  <text x="42" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="14" fill="#000">₹</text>
+</svg>
