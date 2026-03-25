@@ -1,15 +1,30 @@
 @import "tailwindcss";
 
-/* ─── Font face definitions (self-contained, no Google dependency) ─── */
-/* We load via <link> in layout.tsx, these just register the names */
-
+/* ─── Font face definitions and Premium Design System ─── */
 @theme {
-  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'DM Mono', ui-monospace, monospace;
-  --font-display: 'Syne', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono), ui-monospace, monospace;
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+
+  /* Premium Color Palette Based on MCP Stitch Inspiration */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+
+  --color-background: #ffffff;
+  --color-foreground: #09090b;
+  --color-surface: #fafafa;
+  --color-border: #e4e4e7;
 }
 
-/* ─── Base reset ─────────────────────────────────────────────────── */
+/* ─── Base reset and Next.js Font Optimizations ────────────────── */
 @layer base {
   *,
   *::before,
@@ -21,103 +36,105 @@
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    scroll-behavior: smooth;
   }
 
   body {
-    font-family: 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
     font-size: 16px;
     line-height: 1.6;
-    background-color: #09090b;
-    color: #f4f4f5;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    /* CRITICAL: prevent font stretching */
-    font-stretch: normal;
-    font-optical-sizing: auto;
   }
 
-  /* Prevent layout shift while fonts load */
-  .font-syne,
-  [class*="font-syne"] {
-    font-family: 'Syne', ui-sans-serif, system-ui, sans-serif;
-    font-stretch: normal;
-    font-synthesis: none;
-  }
-
-  /* Mono elements */
-  code, kbd, samp, pre,
-  .font-mono,
-  [class*="font-mono"] {
-    font-family: 'DM Mono', ui-monospace, 'Cascadia Code', monospace;
-    font-stretch: normal;
-  }
-
-  /* Headings use Syne */
+  /* Headings */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Syne', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
     font-weight: 700;
     line-height: 1.15;
     letter-spacing: -0.02em;
-    font-stretch: normal;
   }
 
-  /* No weird stretching on inputs */
+  /* Form Elements */
   input, textarea, select, button {
     font-family: inherit;
-    font-stretch: normal;
+    transition: all 0.2s ease-in-out;
+  }
+
+  code, kbd, samp, pre {
+    font-family: var(--font-mono), ui-monospace, monospace;
   }
 }
 
 /* ─── Utility classes ────────────────────────────────────────────── */
 .font-syne {
-  font-family: 'Syne', ui-sans-serif, system-ui, sans-serif !important;
-  font-stretch: normal !important;
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif !important;
 }
 
 .font-dm-sans {
-  font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif !important;
-  font-stretch: normal !important;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif !important;
 }
 
 .font-dm-mono {
-  font-family: 'DM Mono', ui-monospace, monospace !important;
-  font-stretch: normal !important;
+  font-family: var(--font-mono), ui-monospace, monospace !important;
 }
 
 /* ─── Typography scale helpers ───────────────────────────────────── */
 .display-xl {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display), sans-serif;
   font-weight: 900;
   font-size: clamp(40px, 7vw, 72px);
   line-height: 1.0;
   letter-spacing: -0.03em;
-  font-stretch: normal;
 }
 
 .display-lg {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display), sans-serif;
   font-weight: 800;
   font-size: clamp(28px, 4vw, 48px);
   line-height: 1.05;
   letter-spacing: -0.025em;
-  font-stretch: normal;
 }
 
 .display-md {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display), sans-serif;
   font-weight: 700;
   font-size: clamp(20px, 3vw, 32px);
   line-height: 1.1;
   letter-spacing: -0.02em;
-  font-stretch: normal;
+}
+
+/* ─── Modern Aesthetics ──────────────────────────────────────────── */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  border-radius: 1rem;
+}
+
+.btn-premium {
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-500));
+  color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
+  transition: all 0.3s ease;
+}
+
+.btn-premium:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #52525b; }
+::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #a1a1aa; }
 
 /* ─── Animations ─────────────────────────────────────────────────── */
 @keyframes fadeIn {
