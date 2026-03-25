@@ -41,12 +41,20 @@ async function verifyServerIsRunning(maxRetries = 5): Promise<boolean> {
 
   for (let i = 0; i < maxRetries; i++) {
     try {
-      const response = await fetch(`${BASE_URL}/`, {
-        method: 'HEAD',
-        timeout: 5000,
-      });
-      console.log(`   Attempt ${i + 1}: Server responded with ${response.status}`);
-      return true;
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+      try {
+        const response = await fetch(`${BASE_URL}/`, {
+          method: 'HEAD',
+          signal: controller.signal,
+        });
+        clearTimeout(timeoutId);
+        console.log(`   Attempt ${i + 1}: Server responded with ${response.status}`);
+        return true;
+      } catch (error) {
+        clearTimeout(timeoutId);
+        throw error;
+      }
     } catch (error) {
       lastError = error as Error;
       if (i < maxRetries - 1) {
