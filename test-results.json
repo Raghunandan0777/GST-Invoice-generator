@@ -1,0 +1,114 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\Lenovo\\Desktop\\startup\\billkaro-fonts-fixed\\billkaro\\playwright.config.ts",
+    "rootDir": "C:/Users/Lenovo/Desktop/startup/billkaro-fonts-fixed/billkaro/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "C:\\Users\\Lenovo\\Desktop\\startup\\billkaro-fonts-fixed\\billkaro\\tests\\globalSetup.ts",
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/Lenovo/Desktop/startup/billkaro-fonts-fixed/billkaro/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "auth",
+        "name": "auth",
+        "testDir": "C:/Users/Lenovo/Desktop/startup/billkaro-fonts-fixed/billkaro/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/auth.spec.ts"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "C:/Users/Lenovo/Desktop/startup/billkaro-fonts-fixed/billkaro/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "authenticated",
+        "name": "authenticated",
+        "testDir": "C:/Users/Lenovo/Desktop/startup/billkaro-fonts-fixed/billkaro/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/invoices.spec.ts",
+          "**/dashboard.spec.ts",
+          "**/customers.spec.ts",
+          "**/business.spec.ts",
+          "**/export.spec.ts",
+          "**/recurring.spec.ts",
+          "**/upgrade.spec.ts",
+          "**/mobile.spec.ts",
+          "**/edge-cases.spec.ts",
+          "**/error-handling.spec.ts"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results.json"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "junit-results.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [],
+  "errors": [
+    {
+      "message": "Error: Failed to create auth session:\nlocator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"email\"]')\u001b[22m\n\n\nTroubleshooting:\n1. Is the app running? npm run dev\n2. Does test user exist? test@billkaro.dev in Supabase\n3. Are Supabase credentials configured?\n4. Check app logs for auth errors",
+      "stack": "Error: Failed to create auth session:\nlocator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"email\"]')\u001b[22m\n\n\nTroubleshooting:\n1. Is the app running? npm run dev\n2. Does test user exist? test@billkaro.dev in Supabase\n3. Are Supabase credentials configured?\n4. Check app logs for auth errors\n    at createAuthSession (C:\\Users\\Lenovo\\Desktop\\startup\\billkaro-fonts-fixed\\billkaro\\tests\\globalSetup.ts:138:11)\n    at globalSetup (C:\\Users\\Lenovo\\Desktop\\startup\\billkaro-fonts-fixed\\billkaro\\tests\\globalSetup.ts:30:3)",
+      "location": {
+        "file": "C:\\Users\\Lenovo\\Desktop\\startup\\billkaro-fonts-fixed\\billkaro\\tests\\globalSetup.ts",
+        "column": 11,
+        "line": 138
+      },
+      "snippet": "\u001b[90m   at \u001b[39mglobalSetup.ts:138\n\n\u001b[0m \u001b[90m 136 |\u001b[39m   } \u001b[36mcatch\u001b[39m (error) {\n \u001b[90m 137 |\u001b[39m     \u001b[36mconst\u001b[39m errorMessage \u001b[33m=\u001b[39m error \u001b[36minstanceof\u001b[39m \u001b[33mError\u001b[39m \u001b[33m?\u001b[39m error\u001b[33m.\u001b[39mmessage \u001b[33m:\u001b[39m \u001b[33mString\u001b[39m(error)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 138 |\u001b[39m     \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\n \u001b[90m     |\u001b[39m           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 139 |\u001b[39m       \u001b[32m`Failed to create auth session:\\n${errorMessage}\\n\\n`\u001b[39m \u001b[33m+\u001b[39m\n \u001b[90m 140 |\u001b[39m       \u001b[32m`Troubleshooting:\\n`\u001b[39m \u001b[33m+\u001b[39m\n \u001b[90m 141 |\u001b[39m       \u001b[32m`1. Is the app running? npm run dev\\n`\u001b[39m \u001b[33m+\u001b[39m\u001b[0m"
+    }
+  ],
+  "stats": {
+    "startTime": "2026-03-22T18:45:09.533Z",
+    "duration": 33433.869,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
