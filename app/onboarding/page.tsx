@@ -39,11 +39,11 @@ export default function OnboardingPage() {
     }
 
     // Mark onboarding complete in profile
-    await supabase.from('profiles').update({ onboarded: true } as any).eq('id', user.id)
+    await supabase.from('profiles').update({ onboarded: true } as Record<string, unknown>).eq('id', user.id)
     router.push('/dashboard')
   }
 
-  const inp = "w-full bg-zinc-800/80 border border-zinc-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-400 transition-colors placeholder:text-zinc-600"
+  const inp = "w-full bg-zinc-800/80 border border-zinc-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400 transition-colors placeholder:text-zinc-600"
 
   return (
     <div className="min-h-screen bg-zinc-950 flex items-center justify-center p-4">

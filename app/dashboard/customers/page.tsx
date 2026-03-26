@@ -65,7 +65,7 @@ export default function CustomersPage() {
     (c.gstin || '').toLowerCase().includes(search.toLowerCase())
   )
 
-  const inp = "w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-400 transition-colors placeholder:text-zinc-600"
+  const inp = "w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400 transition-colors placeholder:text-zinc-600"
 
   return (
     <div className="p-8">

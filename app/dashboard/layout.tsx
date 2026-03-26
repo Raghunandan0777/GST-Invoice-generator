@@ -12,7 +12,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
     .from('profiles')
     .select('*')
     .eq('id', user.id)
-    .single()
+    .maybeSingle()
 
   return (
     <div className="min-h-screen bg-zinc-950 flex">

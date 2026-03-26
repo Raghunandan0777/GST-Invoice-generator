@@ -31,7 +31,7 @@ export default function ExportPage() {
     setTimeout(() => setDone(false), 3000)
   }
 
-  const inp = "w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-400 transition-colors"
+  const inp = "w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400 transition-colors placeholder:text-zinc-600"
 
   const formats: { id: Format; icon: string; title: string; subtitle: string; desc: string }[] = [
     {

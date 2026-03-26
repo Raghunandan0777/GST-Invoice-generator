@@ -26,20 +26,26 @@ export default defineConfig({
   },
   globalSetup: require.resolve('./tests/globalSetup.ts'),
   projects: [
-    // Authentication tests - no saved session
+    // Authentication tests - no saved session (login, signup, redirects)
     {
       name: 'auth',
-      testMatch: '**/auth.spec.ts',
+      testMatch: '**/billkaro-auth.spec.ts',
       use: { ...devices['Desktop Chrome'] },
     },
-    // Authenticated tests - uses saved session
+    // Authenticated tests - uses saved session from globalSetup
     {
       name: 'authenticated',
-      testMatch: ['**/invoices.spec.ts', '**/dashboard.spec.ts', '**/customers.spec.ts', '**/business.spec.ts', '**/export.spec.ts', '**/recurring.spec.ts', '**/upgrade.spec.ts', '**/mobile.spec.ts', '**/edge-cases.spec.ts', '**/error-handling.spec.ts'],
+      testMatch: ['**/billkaro-dashboard.spec.ts', '**/billkaro-invoice.spec.ts', '**/billkaro-features.spec.ts'],
       use: {
         ...devices['Desktop Chrome'],
         storageState: 'tests/auth.json',
       },
+    },
+    // Public tests - no login required (landing, 404, privacy, terms)
+    {
+      name: 'public',
+      testMatch: '**/billkaro-public.spec.ts',
+      use: { ...devices['Desktop Chrome'] },
     },
   ],
   webServer: undefined, // App should already be running at localhost:3000

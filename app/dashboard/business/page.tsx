@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { INDIAN_STATES } from '@/lib/types'
 
-export default function BusinessPage() {console.log('::: ', );
+export default function BusinessPage() {
   const supabase = createClient()
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
@@ -29,7 +29,7 @@ export default function BusinessPage() {console.log('::: ', );
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
     const payload = { ...form, user_id: user.id, is_default: true }
-    const { data: existing } = await supabase.from('businesses').select('id').eq('user_id', user.id).eq('is_default', true).single()
+    const { data: existing } = await supabase.from('businesses').select('id').eq('user_id', user.id).eq('is_default', true).maybeSingle()
     if (existing) await supabase.from('businesses').update(payload).eq('id', existing.id)
     else await supabase.from('businesses').insert(payload)
     setSaved(true); setSaving(false)
@@ -39,7 +39,7 @@ export default function BusinessPage() {console.log('::: ', );
   const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm(prev => ({ ...prev, [k]: e.target.value }))
 
-  const inp = "w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-400 transition-colors"
+  const inp = "w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400 transition-colors placeholder:text-zinc-600"
 
   if (loading) return <div className="p-8 text-zinc-500">Loading...</div>
 

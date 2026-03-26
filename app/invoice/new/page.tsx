@@ -127,9 +127,9 @@ export default function NewInvoicePage() {
       if (data) {
         // Get next invoice number
         const { count } = await supabase.from('invoices').select('*', { count: 'exact', head: true }).eq('user_id', user.id)
-        setInvoiceNo(`INV-\${String((count || 0) + 1).padStart(4, '0')}`)
+        setInvoiceNo(`INV-${String((count || 0) + 1).padStart(4, '0')}`)
         setSaving(false)
-        router.push(`/invoice/\${data.id}`)
+        router.push(`/invoice/${data.id}`)
         return
       }
     } else {

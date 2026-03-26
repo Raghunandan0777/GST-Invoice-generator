@@ -4,9 +4,10 @@ import { formatCurrency, formatDate, numberToWords } from '@/lib/utils'
 import type { Invoice, InvoiceItem } from '@/lib/types'
 import InvoiceActions from './InvoiceActions'
 
-export default async function InvoiceViewPage({ params }: { params: { id: string } }) {
+export default async function InvoiceViewPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
   const supabase = await createClient()
-  const { data: inv } = await supabase.from('invoices').select('*').eq('id', params.id).single()
+  const { data: inv } = await supabase.from('invoices').select('*').eq('id', id).single()
   if (!inv) notFound()
 
   const items: InvoiceItem[] = inv.items || []

@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, use } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { formatCurrency, numberToWords, validateGSTIN } from '@/lib/utils'
@@ -14,7 +14,8 @@ function emptyItem(): InvoiceItem {
   return { id: uuid(), name: '', hsn: '', rate: 0, qty: 1, gst_rate: 18, taxable: 0, gst_amount: 0, total: 0 }
 }
 
-export default function EditInvoicePage({ params }: { params: { id: string } }) {
+export default function EditInvoicePage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params)
   const router = useRouter()
   const supabase = createClient()
   const [saving, setSaving] = useState(false)
@@ -54,7 +55,7 @@ export default function EditInvoicePage({ params }: { params: { id: string } }) 
   // Load existing invoice for editing
   useEffect(() => {
     async function loadInvoice() {
-      const { data: inv } = await supabase.from('invoices').select('*').eq('id', params.id).single()
+      const { data: inv } = await supabase.from('invoices').select('*').eq('id', id).single()
       if (!inv) return
       setSellerName(inv.seller_name || '')
       setSellerGSTIN(inv.seller_gstin || '')
@@ -79,7 +80,7 @@ export default function EditInvoicePage({ params }: { params: { id: string } }) 
       setNotes(inv.notes || '')
     }
     loadInvoice()
-  }, [params.id])
+  }, [id])
 
   function updateItem(idx: number, field: keyof InvoiceItem, val: string | number) {
     setItems(prev => prev.map((item, i) => {
@@ -126,10 +127,10 @@ export default function EditInvoicePage({ params }: { params: { id: string } }) 
       notes,
     }
     if (user) {
-      const { data } = await supabase.from('invoices').update({...payload, updated_at: new Date().toISOString()}).eq('id', params.id).select().single()
+      const { data } = await supabase.from('invoices').update({...payload, updated_at: new Date().toISOString()}).eq('id', id).select().single()
       if (data) {
         setSaving(false)
-        router.push(`/invoice/\${params.id}`)
+        router.push(`/invoice/${id}`)
         return
       }
     } else {
