@@ -83,6 +83,8 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) - you're good to go.
 
+LIVE URL : https://gst-invoice-generator-three.vercel.app
+
 ## How It's Organized
 
 ```
@@ -176,8 +178,8 @@ Make sure you ran the SQL schema. Check your Supabase -> SQL Editor -> Run `supa
 **Invoices not sending?**
 Verify your Resend API key and check the Resend logs.
 
-**Payment links not working?**
-Double-check your Razorpay test/live mode and webhook URL.
+**Payment links if not  working?**
+Double-check your Razorpay test/live mode and webhook URL. 
 
 ## Contributing
 
